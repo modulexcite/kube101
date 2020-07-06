@@ -40,6 +40,7 @@ that has already been built and uploaded to DockerHub under the name
    NAME                          READY     STATUS              RESTARTS   AGE
    guestbook-59bd679fdc-bxdg7    0/1       ContainerCreating   0          1m
    ```
+
    Eventually, the status should show up as `Running`.
    
    ```console
@@ -50,9 +51,8 @@ that has already been built and uploaded to DockerHub under the name
    
    The end result of the run command is not just the pod containing our application containers,
    but a Deployment resource that manages the lifecycle of those pods.
- 
    
-3. Once the status reads `Running`, we need to expose that deployment as a
+1. Once the status reads `Running`, we need to expose that deployment as a
    service so we can access it through the IP of the worker nodes.
    The `guestbook` application listens on port 3000.  Run:
 
@@ -61,7 +61,7 @@ that has already been built and uploaded to DockerHub under the name
    service "guestbook" exposed
    ```
 
-4. To find the port used on that worker node, examine your new service:
+1. To find the port used on that worker node, examine your new service:
 
    ```console
    $ kubectl get service guestbook
@@ -73,12 +73,12 @@ that has already been built and uploaded to DockerHub under the name
    the pod exposed to the cluster on port 31208. This port in the 31000 range is automatically chosen, 
    and could be different for you.
 
-5. `guestbook` is now running on your cluster, and exposed to the internet. We need to find out where it is accessible.
+1. `guestbook` is now running on your cluster, and exposed to the internet. We need to find out where it is accessible.
    The worker nodes running in the container service get external IP addresses.
-   Run `$ ibmcloud cs workers <name-of-cluster>`, and note the public IP listed on the `<public-IP>` line.
+   Run `$ ibmcloud cs workers <name-of-cluster>`, and note one (any one) of the public IP listed on the `<public-IP>` line.
    
    ```console
-   $ ibmcloud cs workers osscluster
+   $ ibmcloud cs workers $CLUSTER_NAME
    OK
    ID                                                 Public IP        Private IP     Machine Type   State    Status   Zone    Version  
    kube-hou02-pa1e3ee39f549640aebea69a444f51fe55-w1   173.193.99.136   10.76.194.30   free           normal   Ready    hou02   1.5.6_1500*
@@ -86,7 +86,7 @@ that has already been built and uploaded to DockerHub under the name
    
    We can see that our `<public-IP>` is `173.193.99.136`.
    
-6. Now that you have both the address and the port, you can now access the application in the web browser
+1. Now that you have both the address and the port, you can now access the application in the web browser
    at `<public-IP>:<nodeport>`. In the example case this is `173.193.99.136:31208`.
    
 Congratulations, you've now deployed an application to Kubernetes!

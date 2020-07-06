@@ -19,7 +19,7 @@ as well as the configuration files we'll use to deploy the pieces of the applica
 Change directory by running the command `cd guestbook`. You will find all the
 configurations files for this exercise under the directory `v1`.
 
-# 1. Scale apps natively
+## 1. Scale apps natively
 
 Kubernetes can deploy an individual pod to run an application but when you
 need to scale it to handle a large number of requests a `Deployment` is the
@@ -47,9 +47,10 @@ Consider the following deployment configuration for guestbook application
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook
+  name: guestbook-v1
   labels:
     app: guestbook
+    version: "1.0"
 spec:
   replicas: 3
   selector:
@@ -59,6 +60,7 @@ spec:
     metadata:
       labels:
         app: guestbook
+        version: "1.0"
     spec:
       containers:
       - name: guestbook
@@ -81,7 +83,7 @@ all times.
 
    ``` console
    $ kubectl create -f guestbook-deployment.yaml
-   deployment "guestbook" created
+   deployment.apps/guestbook-v1 created
    ```
 
 - List the pod with label app=guestbook
@@ -201,7 +203,7 @@ spec:
     spec:
       containers:
       - name: redis-master
-        image: redis:2.8.23
+        image: redis:3.2.9
         ports:
         - name: redis-server
           containerPort: 6379
@@ -210,7 +212,7 @@ spec:
 This yaml creates a redis database in a Deployment named 'redis-master'.
 It will create a single instance, with replicas set to 1, and the guestbook app instances
 will connect to it to persist data, as well as read the persisted data back.
-The image running in the container is 'redis:2.8.23' and exposes the standard redis port 6379.
+The image running in the container is 'redis:3.2.9' and exposes the standard redis port 6379.
 
 - Create a redis Deployment, like we did for guestbook:
 
@@ -328,7 +330,7 @@ spec:
     spec:
       containers:
       - name: redis-slave
-        image: kubernetes/redis-slave:v2
+        image: ibmcom/guestbook-redis-slave:v2
         ports:
         - name: redis-server
           containerPort: 6379
