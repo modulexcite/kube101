@@ -34,7 +34,7 @@ On Windows, a copy of `notepad.exe` will be opened with the contents of the file
 
 For debugging live, this command frequently helps me:
 ```console
-kubectl run bb --image busybox --restart=Never -it --rm
+kubectl create deployment bb --image busybox --restart=Never -it --rm
 ```
 
 In the busybox image is a basic shell that contains useful utilities.
