@@ -62,7 +62,7 @@ To view a local version of the Kubernetes dashboard and to deploy apps into your
 1. Move the executable file to the `/usr/local/bin` directory using the command `mv /<path_to_file>/kubectl /usr/local/bin/kubectl` .
 
 2. Make sure that `/usr/local/bin` is listed in your PATH system variable.
-```
+```shell
 $echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
@@ -72,29 +72,29 @@ $echo $PATH
 # Configure Kubectl to point to IBM Cloud Kubernetes Service
 1. List the clusters in your account:
 
-```console
+```shell
 ibmcloud ks clusters
 ```
 
 2. (optional) Set an environment variable for convenience
 
-```console
+```shell
 export CLUSTER_NAME=<your_cluster_name>
 ```
 
 3. Configure `kubectl` to point to your cluster
-```console
+```shell
 ibmcloud ks cluster config --cluster $CLUSTER_NAME
 ```
 
 3. Validate proper configuration
-```console
+```shell
 kubectl get namespace
 ```
 
 4. You should see output similar to the following, if so, then your're ready to continue.
 
-```console
+```shell
 NAME              STATUS   AGE
 default           Active   125m
 ibm-cert-store    Active   121m
@@ -112,7 +112,7 @@ functionality later. All the configuration files we use are under the directory 
 
 Repo `kube101` contains the step by step instructions to run the workshop.
 
-```console
+```shell
 $ git clone https://github.com/IBM/guestbook.git
 $ git clone https://github.com/IBM/kube101.git
 ```

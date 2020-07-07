@@ -24,13 +24,13 @@ that has already been built and uploaded to DockerHub under the name
 
    You should see output similar to the following:
 
-   ```console
+   ```shell
    kubectl get pods
    ```
 
    Eventually, the status should show up as `Running`.
 
-   ```console
+   ```shell
    $ kubectl get pods
    NAME                          READY     STATUS              RESTARTS   AGE
    guestbook-59bd679fdc-bxdg7    1/1       Running             0          1m
@@ -43,13 +43,13 @@ that has already been built and uploaded to DockerHub under the name
    service so we can access it through the IP of the worker nodes.
    The `guestbook` application listens on port 3000.  Run:
 
-   ```console
+   ```shell
    kubectl expose deployment guestbook --type="NodePort" --port=3000
    ```
 
 1. To find the port used on that worker node, examine your new service:
 
-   ```console
+   ```shell
    $ kubectl get service guestbook
    NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
    guestbook   NodePort   10.10.10.253   <none>        3000:31208/TCP   1m
@@ -63,7 +63,7 @@ that has already been built and uploaded to DockerHub under the name
    The worker nodes running in the container service get external IP addresses.
    Get the workers for your cluster and note one (any one) of the public IPs listed on the `<public-IP>` line. Replace `$CLUSTER_NAME` with your cluster name unless you have this environment variable set.
 
-   ```console
+   ```shell
    $ ibmcloud ks workers --cluster $CLUSTER_NAME
    OK
    ID                                                 Public IP        Private IP     Machine Type   State    Status   Zone    Version  

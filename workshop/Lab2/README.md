@@ -7,7 +7,7 @@ on Kubernetes.
 For this lab, you need a running deployment of the `guestbook` application
 from the previous lab. If you need to create it, run:
 
-```console
+```shell
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
 ```
 
@@ -21,7 +21,7 @@ resources to handle increasing load on your application.
    existing deployment. Let's increase our capacity from a single running instance of
    `guestbook` up to 10 instances:
 
-   ``` console
+   ```shell
    kubectl scale --replicas=10 deployment guestbook
    ```
 
@@ -37,7 +37,7 @@ resources to handle increasing load on your application.
    The rollout might occur so quickly that the following messages might
    _not_ display:
 
-   ```console
+   ```shell
    $ kubectl rollout status deployment guestbook
    Waiting for rollout to finish: 1 of 10 updated replicas are available...
    Waiting for rollout to finish: 2 of 10 updated replicas are available...
@@ -58,7 +58,7 @@ resources to handle increasing load on your application.
 
    You should see output listing 10 replicas of your deployment:
 
-   ```console
+   ```shell
    $ kubectl get pods
    NAME                        READY     STATUS    RESTARTS   AGE
    guestbook-562211614-1tqm7   1/1       Running   0          1d
@@ -114,7 +114,7 @@ To update and roll back:
   The rollout might occur so quickly that the following messages
    might _not_ display:
 
-   ```console
+   ```shell
    $ kubectl rollout status deployment/guestbook
    Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
    Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
@@ -169,7 +169,7 @@ To update and roll back:
 
 1. If you want to undo your latest rollout, use:
 
-   ```console
+   ```shell
    kubectl rollout undo deployment guestbook
    ```
 
@@ -185,7 +185,7 @@ To update and roll back:
    The deployment manages these two sets of pods with a resource called a ReplicaSet.
    We can see the guestbook ReplicaSets with:
 
-   ```console
+   ```shell
    $ kubectl get replicasets -l app=guestbook
    NAME                   DESIRED   CURRENT   READY     AGE
    guestbook-5f5548d4f    10        10        10        21m

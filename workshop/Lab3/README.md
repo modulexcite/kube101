@@ -9,7 +9,7 @@ Kubernetes cluster.
 
 Before we work with the application we need to clone a github repo:
 
-```
+```shell
 git clone https://github.com/IBM/guestbook.git
 ```
 
@@ -85,7 +85,7 @@ all times.
    To create a Deployment using this configuration file we use the
    following command:
 
-   ``` console
+   ```shell
    kubectl create -f guestbook-deployment.yaml
    ```
 
@@ -96,7 +96,7 @@ all times.
   the labels defined above in the yaml file in the
   `spec.template.metadata.labels` section.
 
-   ```console 
+   ```shell 
    kubectl get pods -l app=guestbook
    ```
 
@@ -104,7 +104,7 @@ When you change the number of replicas in the configuration, Kubernetes will
 try to add, or remove, pods from the system to match your request. To can
 make these modifications by using the following command:
 
-   ```console
+   ```shell
    kubectl edit deployment guestbook-v1
    ```
 
@@ -122,7 +122,7 @@ You can also edit the deployment file we used to create the Deployment
 to make changes. You should use the following command to make the change
 effective when you edit the deployment locally.
 
-   ```console
+   ```shell
    kubectl apply -f guestbook-deployment.yaml
    ```
 
@@ -228,13 +228,13 @@ The image running in the container is 'redis:3.2.9' and exposes the standard red
 
 - Create a redis Deployment, like we did for guestbook:
 
-    ```console
+    ```shell
     kubectl create -f redis-master-deployment.yaml
     ```
 
 - Check to see that redis server pod is running:
 
-    ```console
+    ```shell
     $ kubectl get pods -lapp=redis,role=master
     NAME                 READY     STATUS    RESTARTS   AGE
     redis-master-q9zg7   1/1       Running   0          2d
@@ -255,7 +255,7 @@ The image running in the container is 'redis:3.2.9' and exposes the standard red
     Once in the container we can use the "redis-cli" command to make sure the
     redis database is running properly, or to configure it if needed.
 
-    ```console
+    ```shell
     redis-cli> ping
     PONG
     redis-cli> exit
@@ -361,7 +361,7 @@ spec:
 
  - Check if all the slave replicas are running
 
-  ```console
+  ```shell
   $ kubectl get pods -lapp=redis,role=slave
   NAME                READY     STATUS    RESTARTS   AGE
   redis-slave-kd7vx   1/1       Running   0          2d
@@ -371,7 +371,7 @@ spec:
 - And then go into one of those pods and look at the database to see
   that everything looks right. Replace the pod name `redis-slave-kd7vx` with your own pod name. If you get the back `(empty list or set)` when you print the keys, go to the guestbook application and add an entry!
 
- ```console
+ ```shell
 $ kubectl exec -it redis-slave-kd7vx  redis-cli
 127.0.0.1:6379> keys *
 1) "guestbook"
@@ -410,7 +410,7 @@ spec:
     ```
 
 - Restart guestbook so that it will find the slave service to read from.
-    ```console
+    ```shell
     kubectl delete deploy guestbook-v1
     ```
     ```shell
@@ -421,7 +421,7 @@ spec:
 
 That's the end of the lab. Now let's clean-up our environment:
 
-```console
+```shell
 kubectl delete -f guestbook-deployment.yaml
 kubectl delete -f guestbook-service.yaml
 kubectl delete -f redis-slave-service.yaml
