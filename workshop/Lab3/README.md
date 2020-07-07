@@ -166,7 +166,7 @@ Deployment container spec.
 - Test guestbook app using a browser of your choice using the url
   `<your-cluster-ip>:<node-port>`
 
-  Remember, to get the `nodeport` and `public-ip` use the following commands, replacing `CLUSTER_NAME` the name of your cluster if the environment variable is not already set.
+  Remember, to get the `nodeport` and `public-ip` use the following commands, replacing `$CLUSTER_NAME` the name of your cluster if the environment variable is not already set.
 
   ```shell
   kubectl describe service guestbook
@@ -301,7 +301,7 @@ port 6379 on the pods selected by the selectors "app=redis" and "role=master".
     kubectl create -f guestbook-deployment.yaml
     ```
 
-- Test guestbook app using a browser of your choice using the url `<your-cluster-ip>:<node-port>`, or by simply refreshing the page if you already have the app open in another window.
+- Test guestbook app using a browser of your choice using the url `<your-cluster-ip>:<node-port>`, or by refreshing the page if you already have the app open in another window.
   
 You can see now that if you open up multiple browsers and refresh the page
 to access the different copies of guestbook that they all have a consistent state.
@@ -417,7 +417,7 @@ spec:
     kubectl create -f guestbook-deployment.yaml
     ```
     
-- Test guestbook app using a browser of your choice using the url `<your-cluster-ip>:<node-port>`, or by simply refreshing the page if you have the app open in another window.
+- Test guestbook app using a browser of your choice using the url `<your-cluster-ip>:<node-port>`, or by refreshing the page if you have the app open in another window.
 
 That's the end of the lab. Now let's clean-up our environment:
 

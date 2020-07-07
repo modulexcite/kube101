@@ -2,7 +2,7 @@
 
 ## Set up your kubernetes environment
 
-For the hands-on labs in this tutorial repository, you will need a kubernetes cluster. You can either create one as-a-service from the IBM Cloud Kubernetes Service, use a hosted environment or install one locally on your workstation.
+For the hands-on labs in this tutorial repository, you will need a kubernetes cluster. One option for creating a cluster is to make use of the Kubernetes as-a-service from the IBM Cloud Kubernetes Service as outlined below.
 
 ### Use the IBM Cloud Kubernetes Service
 
@@ -69,6 +69,41 @@ $echo $PATH
 
 3. Convert the binary file to an executable: `chmod +x /usr/local/bin/kubectl`
 
+# Configure Kubectl to point to IBM Cloud Kubernetes Service
+1. List the clusters in your account:
+
+```console
+ibmcloud ks clusters
+```
+
+2. (optional) Set an environment variable for convenience
+
+```console
+export CLUSTER_NAME=<your_cluster_name>
+```
+
+3. Configure `kubectl` to point to your cluster
+```console
+ibmcloud ks cluster config --cluster $CLUSTER_NAME
+```
+
+3. Validate proper configuration
+```console
+kubectl get namespace
+```
+
+4. You should see output similar to the following, if so, then your're ready to continue.
+
+```console
+NAME              STATUS   AGE
+default           Active   125m
+ibm-cert-store    Active   121m
+ibm-system        Active   124m
+kube-node-lease   Active   125m
+kube-public       Active   125m
+kube-system       Active   125m
+```
+
 # Download the Workshop Source Code
 Repo `guestbook` has the application that we'll be deploying.
 While we're not going to build it we will use the deployment configuration files from that repo.
@@ -81,3 +116,4 @@ Repo `kube101` contains the step by step instructions to run the workshop.
 $ git clone https://github.com/IBM/guestbook.git
 $ git clone https://github.com/IBM/kube101.git
 ```
+

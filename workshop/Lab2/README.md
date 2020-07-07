@@ -5,7 +5,7 @@ a deployment has and how to safely roll out an update of your application
 on Kubernetes.
 
 For this lab, you need a running deployment of the `guestbook` application
-from the previous lab. If you deleted it, recreate it using:
+from the previous lab. If you need to create it, run:
 
 ```console
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
